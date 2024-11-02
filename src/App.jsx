@@ -64,17 +64,20 @@ function App() {
     if (!imageFile()) return;
     setLoading(true);
     try {
-      // Upload image to storage or get a data URL
-      const reader = new FileReader();
-      reader.onload = async () => {
-        const imageDataUrl = reader.result;
-        const result = await createEvent('chatgpt_request', {
-          prompt: `Describe this image: ${imageDataUrl}`,
-          response_type: 'text'
-        });
-        setImageDescription(result);
-      };
-      reader.readAsDataURL(imageFile());
+      // Upload image to storage and get a URL
+      const formData = new FormData();
+      formData.append('file', imageFile());
+      const uploadResponse = await fetch('/api/uploadImage', {
+        method: 'POST',
+        body: formData
+      });
+      const { imageUrl } = await uploadResponse.json();
+
+      const result = await createEvent('chatgpt_request', {
+        prompt: `Describe the image at this URL: ${imageUrl}`,
+        response_type: 'text'
+      });
+      setImageDescription(result);
     } catch (error) {
       console.error('Error describing image:', error);
     } finally {
