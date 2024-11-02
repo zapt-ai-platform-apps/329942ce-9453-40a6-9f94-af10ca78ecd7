@@ -1,62 +1,62 @@
-# New App
+# التطبيق الجديد
 
-## Overview
+## نظرة عامة
 
-New App is designed to provide blind accessibility services to users without requiring any login or authentication. The app offers features that assist visually impaired users by reading text aloud and describing images.
+تم تصميم التطبيق الجديد لتوفير خدمات إمكانية الوصول للمكفوفين للمستخدمين دون الحاجة إلى تسجيل الدخول أو المصادقة. يقدم التطبيق ميزات تساعد المستخدمين ضعاف البصر عن طريق قراءة النص بصوت عالٍ ووصف الصور.
 
-## Features
+## الميزات
 
-1. **Text-to-Speech**
-   - Users can input custom text into a text area.
-   - By clicking the "Read Aloud" button, the app converts the text into speech and plays the audio.
+1. **تحويل النص إلى كلام**
+   - يمكن للمستخدمين إدخال نص مخصص في منطقة النص.
+   - بالضغط على زر "قراءة بصوت عالٍ"، يقوم التطبيق بتحويل النص إلى كلام ويشغل الصوت.
 
-2. **Image Description**
-   - Users can upload an image from their device.
-   - By clicking the "Describe Image" button, the app generates a textual description of the image content.
+2. **وصف الصورة**
+   - يمكن للمستخدمين تحميل صورة من أجهزتهم.
+   - بالضغط على زر "وصف الصورة"، يقوم التطبيق بإنشاء وصف نصي لمحتوى الصورة.
 
-3. **High Contrast Mode**
-   - Users can toggle a high-contrast mode for better visibility.
-   - This feature enhances the app's visual elements for users with low vision.
+3. **وضع التباين العالي**
+   - يمكن للمستخدمين تبديل وضع التباين العالي للحصول على رؤية أفضل.
+   - تعمل هذه الميزة على تحسين العناصر المرئية للتطبيق للمستخدمين ضعاف البصر.
 
-## User Journey
+## رحلة المستخدم
 
-1. **Accessing the App**
-   - Open the app in a web browser.
-   - The app is a Progressive Web App (PWA) and can be installed on your device.
-   - No login is required to use the app.
+1. **الوصول إلى التطبيق**
+   - افتح التطبيق في متصفح الويب.
+   - التطبيق هو تطبيق ويب تقدمي (PWA) ويمكن تثبيته على جهازك.
+   - لا يتطلب تسجيل الدخول لاستخدام التطبيق.
 
-2. **Using Text-to-Speech**
-   - Navigate to the Text-to-Speech section.
-   - Input the desired text into the provided text area.
-   - Click the "Read Aloud" button.
-   - The app processes the text and plays the audio.
+2. **استخدام تحويل النص إلى كلام**
+   - انتقل إلى قسم تحويل النص إلى كلام.
+   - أدخل النص المطلوب في منطقة النص المقدمة.
+   - اضغط على زر "قراءة بصوت عالٍ".
+   - يقوم التطبيق بمعالجة النص وتشغيل الصوت.
 
-3. **Using Image Description**
-   - Navigate to the Image Description section.
-   - Upload an image by clicking the "Choose File" button and selecting an image from your device.
-   - Click the "Describe Image" button.
-   - The app processes the image and displays a textual description.
+3. **استخدام وصف الصورة**
+   - انتقل إلى قسم وصف الصورة.
+   - حمّل صورة بالنقر على زر "اختيار ملف" وتحديد صورة من جهازك.
+   - اضغط على زر "وصف الصورة".
+   - يقوم التطبيق بمعالجة الصورة وعرض وصف نصي.
 
-4. **Enabling High Contrast Mode**
-   - Toggle the High Contrast Mode switch to enhance visibility.
-   - The app's color scheme changes to a high-contrast theme.
+4. **تمكين وضع التباين العالي**
+   - قم بتبديل مفتاح وضع التباين العالي لتعزيز الرؤية.
+   - تتغير مخطط ألوان التطبيق إلى سمة عالية التباين.
 
-## External APIs and Services
+## واجهات برمجة التطبيقات والخدمات الخارجية
 
-- **Text-to-Speech**: The app uses the `text_to_speech` event to convert text into speech.
-- **Image Description**: The app uses the `chatgpt_request` event to generate descriptions for uploaded images.
-- **Cloudinary**: Cloudinary is used for storing the uploaded images.
-- **Progressier**: The app uses Progressier for PWA functionalities.
-- **Sentry**: Sentry is integrated for error logging and monitoring.
+- **تحويل النص إلى كلام**: يستخدم التطبيق حدث `text_to_speech` لتحويل النص إلى كلام.
+- **وصف الصورة**: يستخدم التطبيق حدث `chatgpt_request` لإنشاء أوصاف للصور المحملة.
+- **Cloudinary**: يتم استخدام Cloudinary لتخزين الصور المحملة.
+- **Progressier**: يستخدم التطبيق Progressier لوظائف PWA.
+- **Sentry**: تم دمج Sentry لتسجيل الأخطاء والمراقبة.
 
-## Environment Variables
+## متغيرات البيئة
 
-The app requires the following environment variables to function properly. These should be set in a `.env` file:
+يتطلب التطبيق متغيرات البيئة التالية ليعمل بشكل صحيح. يجب تعيينها في ملف `.env`:
 
-- `VITE_PUBLIC_APP_ID`: Your application ID.
-- `VITE_PUBLIC_SENTRY_DSN`: Your Sentry DSN URL.
-- `VITE_PUBLIC_APP_ENV`: The application environment (e.g., `development`, `production`).
-- `CLOUDINARY_CLOUD_NAME`: Your Cloudinary cloud name.
-- `CLOUDINARY_API_KEY`: Your Cloudinary API key.
-- `CLOUDINARY_API_SECRET`: Your Cloudinary API secret.
-- `PROJECT_ID`: Your project ID.
+- `VITE_PUBLIC_APP_ID`: معرف التطبيق الخاص بك.
+- `VITE_PUBLIC_SENTRY_DSN`: عنوان DSN الخاص بـ Sentry.
+- `VITE_PUBLIC_APP_ENV`: بيئة التطبيق (مثال: `development`, `production`).
+- `CLOUDINARY_CLOUD_NAME`: اسم السحابة الخاص بـ Cloudinary.
+- `CLOUDINARY_API_KEY`: مفتاح API الخاص بـ Cloudinary.
+- `CLOUDINARY_API_SECRET`: السر الخاص بـ Cloudinary.
+- `PROJECT_ID`: معرف المشروع الخاص بك.
