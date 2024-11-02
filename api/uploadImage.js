@@ -1,4 +1,6 @@
 import * as Sentry from "@sentry/node";
+import cloudinary from 'cloudinary';
+import formidable from 'formidable';
 
 Sentry.init({
   dsn: process.env.VITE_PUBLIC_SENTRY_DSN,
@@ -10,6 +12,19 @@ Sentry.init({
     }
   }
 });
+
+// Configure Cloudinary
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+export const config = {
+  api: {
+    bodyParser: false // We need to disable the default body parser
+  }
+};
 
 export default async function handler(req, res) {
   try {
@@ -29,8 +44,27 @@ export default async function handler(req, res) {
 }
 
 async function handleFileUpload(req) {
-  // Implement logic to handle file upload and return the image URL
-  // This might involve storing the image in cloud storage like S3, and returning its URL
-  // For now, you might need to implement this based on your setup
-  throw new Error('File upload not implemented');
+  return new Promise((resolve, reject) => {
+    const form = formidable({ multiples: false });
+
+    form.parse(req, async (err, fields, files) => {
+      if (err) {
+        reject(err);
+      }
+
+      const file = files.file;
+      if (!file) {
+        reject(new Error('No file uploaded'));
+      }
+
+      // Upload to Cloudinary
+      cloudinary.v2.uploader.upload(file.filepath, (error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result.secure_url);
+        }
+      });
+    });
+  });
 }
